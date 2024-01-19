@@ -1,16 +1,23 @@
-function Comic() {
+import React, {useState} from "react"
+
+function Comic({title, issue, image}) {
+  const [isCoverView, setIsCoverView] = useState(true)
+  const toggleDetails = () => {
+    setIsCoverView(!isCoverView)
+  } 
+  
+
+    const details = (
+      <div>
+      <h3>{title}</h3>
+      <h4>"Issue No." {issue}</h4>
+      <button>Remove</button>
+      </div>)
+    const cover = (<div><img src={image} alt={"Comic Issue Image"} /></div>)
 
   return (
-    <div className="comic-item">
-
-      {/* The image should render if the details aren't displayed */}
-      <img src={"#"} alt={"Comic Issue Image"} />
-
-      {/* The details should render if the image isn't displayed */}
-      <h3>{"Title"}</h3>
-      <h4>{"Issue No."}</h4>
-      <button>Remove</button>
-
+    <div className="comic-item" onClick={toggleDetails}>
+    { isCoverView ? cover : details }
     </div>
   )
 
